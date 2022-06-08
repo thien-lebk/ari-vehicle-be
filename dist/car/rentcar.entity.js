@@ -9,66 +9,87 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Customer = exports.UserRole = void 0;
-const typeorm_1 = require("typeorm");
+exports.RentCar = void 0;
 const swagger_1 = require("@nestjs/swagger");
-const class_transformer_1 = require("class-transformer");
-const user_entity_1 = require("../user/user.entity");
-var UserRole;
-(function (UserRole) {
-    UserRole["ADMIN"] = "admin";
-    UserRole["USER"] = "user";
-})(UserRole = exports.UserRole || (exports.UserRole = {}));
-let Customer = class Customer extends typeorm_1.BaseEntity {
+const typeorm_1 = require("typeorm");
+let RentCar = class RentCar extends typeorm_1.BaseEntity {
 };
 __decorate([
     swagger_1.ApiProperty(),
     typeorm_1.PrimaryGeneratedColumn(),
     __metadata("design:type", Number)
-], Customer.prototype, "id", void 0);
+], RentCar.prototype, "id", void 0);
 __decorate([
     typeorm_1.Column(),
-    __metadata("design:type", String)
-], Customer.prototype, "name", void 0);
-__decorate([
-    swagger_1.ApiHideProperty(),
-    typeorm_1.Column(),
-    class_transformer_1.Exclude(),
-    __metadata("design:type", String)
-], Customer.prototype, "username", void 0);
-__decorate([
-    swagger_1.ApiHideProperty(),
-    typeorm_1.Column(),
-    class_transformer_1.Exclude(),
-    __metadata("design:type", String)
-], Customer.prototype, "email", void 0);
-__decorate([
-    swagger_1.ApiHideProperty(),
-    typeorm_1.Column(),
-    __metadata("design:type", String)
-], Customer.prototype, "password", void 0);
+    __metadata("design:type", Number)
+], RentCar.prototype, "carid", void 0);
 __decorate([
     swagger_1.ApiHideProperty(),
     typeorm_1.Column(),
     __metadata("design:type", Date)
-], Customer.prototype, "created_at", void 0);
+], RentCar.prototype, "rentdate", void 0);
 __decorate([
     swagger_1.ApiHideProperty(),
     typeorm_1.Column(),
     __metadata("design:type", Date)
-], Customer.prototype, "updated_at", void 0);
+], RentCar.prototype, "returndate", void 0);
+__decorate([
+    swagger_1.ApiHideProperty(),
+    typeorm_1.Column(),
+    __metadata("design:type", String)
+], RentCar.prototype, "driver", void 0);
+__decorate([
+    swagger_1.ApiHideProperty(),
+    typeorm_1.Column(),
+    __metadata("design:type", Boolean)
+], RentCar.prototype, "bod", void 0);
+__decorate([
+    swagger_1.ApiHideProperty(),
+    typeorm_1.Column(),
+    __metadata("design:type", Date)
+], RentCar.prototype, "bodreviewdate", void 0);
+__decorate([
+    swagger_1.ApiHideProperty(),
+    typeorm_1.Column(),
+    __metadata("design:type", Boolean)
+], RentCar.prototype, "bodteam", void 0);
+__decorate([
+    swagger_1.ApiHideProperty(),
+    typeorm_1.Column(),
+    __metadata("design:type", Date)
+], RentCar.prototype, "bodteamreviewdate", void 0);
 __decorate([
     swagger_1.ApiHideProperty(),
     typeorm_1.Column(),
     __metadata("design:type", Number)
-], Customer.prototype, "role", void 0);
+], RentCar.prototype, "proposer", void 0);
+__decorate([
+    swagger_1.ApiHideProperty(),
+    typeorm_1.Column(),
+    __metadata("design:type", String)
+], RentCar.prototype, "destination", void 0);
+__decorate([
+    swagger_1.ApiHideProperty(),
+    typeorm_1.Column(),
+    __metadata("design:type", String)
+], RentCar.prototype, "reason", void 0);
 __decorate([
     swagger_1.ApiHideProperty(),
     typeorm_1.Column(),
     __metadata("design:type", Number)
-], Customer.prototype, "team", void 0);
-Customer = __decorate([
-    typeorm_1.Entity({ name: "users", schema: "vehicle" })
-], Customer);
-exports.Customer = Customer;
-//# sourceMappingURL=customer.entity.js.map
+], RentCar.prototype, "fuel", void 0);
+__decorate([
+    swagger_1.ApiHideProperty(),
+    typeorm_1.Column(),
+    __metadata("design:type", Date)
+], RentCar.prototype, "realreturndate", void 0);
+__decorate([
+    swagger_1.ApiHideProperty(),
+    typeorm_1.Column(),
+    __metadata("design:type", String)
+], RentCar.prototype, "note", void 0);
+RentCar = __decorate([
+    typeorm_1.Entity({ name: "rentinfo", schema: "vehicle" })
+], RentCar);
+exports.RentCar = RentCar;
+//# sourceMappingURL=rentcar.entity.js.map

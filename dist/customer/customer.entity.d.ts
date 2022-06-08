@@ -5,11 +5,12 @@ export declare enum UserRole {
 }
 export declare class Customer extends BaseEntity {
     id: number;
-    full_name: string;
-    user_name: string;
+    name: string;
+    username: string;
     email: string;
     password: string;
     created_at: Date;
     updated_at: Date;
-    role: UserRole;
+    role: number;
+    team: number;
 }

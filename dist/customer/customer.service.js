@@ -27,15 +27,17 @@ let CustomerService = class CustomerService {
         return { statusCode: 200, data: users };
     }
     async createUser(transactionManager, createUserDto) {
-        const { full_name, user_name, email, password, created_at, updated_at } = createUserDto;
+        const { name, username, email, password, created_at, updated_at, role, team, } = createUserDto;
         const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = transactionManager.create(customer_entity_1.Customer, {
-            full_name,
-            user_name,
+            name,
+            username,
             email,
             password: hashedPassword,
             created_at,
             updated_at,
+            role,
+            team,
         });
         try {
             await transactionManager.save(newUser);
@@ -46,11 +48,11 @@ let CustomerService = class CustomerService {
             common_1.Logger.error(error);
             throw new common_1.InternalServerErrorException("Error when create user.");
         }
-        return { statusCode: 201, message: "Create user successfully." };
+        return { statusCode: 200, message: "Create user successfully." };
     }
     async signIn(transactionManager, signInDto) {
-        const { user_name, password } = signInDto;
-        const user = await transactionManager.findOne(customer_entity_1.Customer, { user_name });
+        const { username, password } = signInDto;
+        const user = await transactionManager.findOne(customer_entity_1.Customer, { username });
         if (!user) {
             throw new common_1.UnauthorizedException("Invalid Email Address");
         }
@@ -59,7 +61,10 @@ let CustomerService = class CustomerService {
             throw new common_1.UnauthorizedException("Invalid password");
         }
         const token = await apiFeatures_utils_1.ApiFeature.assignJwtToken(user.id.toString(), this.jwtService);
-        return { token };
+        let data = {};
+        data["token"] = token;
+        data["user"] = user;
+        return data;
     }
 };
 CustomerService = __decorate([

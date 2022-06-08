@@ -1,8 +1,15 @@
+export declare enum UserRole {
+    MANAGER = "manager",
+    LEADER = "leader",
+    STAFF = "STAFF"
+}
 export declare class CreateUserDto {
-    full_name: string;
-    user_name: string;
+    name: string;
+    username: string;
     email: string;
     password: string;
     created_at: Date;
     updated_at: Date;
+    role: number;
+    team: number;
 }

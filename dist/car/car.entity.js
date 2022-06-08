@@ -9,66 +9,62 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Customer = exports.UserRole = void 0;
-const typeorm_1 = require("typeorm");
+exports.Car = void 0;
 const swagger_1 = require("@nestjs/swagger");
-const class_transformer_1 = require("class-transformer");
-const user_entity_1 = require("../user/user.entity");
-var UserRole;
-(function (UserRole) {
-    UserRole["ADMIN"] = "admin";
-    UserRole["USER"] = "user";
-})(UserRole = exports.UserRole || (exports.UserRole = {}));
-let Customer = class Customer extends typeorm_1.BaseEntity {
+const typeorm_1 = require("typeorm");
+let Car = class Car extends typeorm_1.BaseEntity {
 };
 __decorate([
     swagger_1.ApiProperty(),
     typeorm_1.PrimaryGeneratedColumn(),
     __metadata("design:type", Number)
-], Customer.prototype, "id", void 0);
+], Car.prototype, "id", void 0);
 __decorate([
     typeorm_1.Column(),
     __metadata("design:type", String)
-], Customer.prototype, "name", void 0);
-__decorate([
-    swagger_1.ApiHideProperty(),
-    typeorm_1.Column(),
-    class_transformer_1.Exclude(),
-    __metadata("design:type", String)
-], Customer.prototype, "username", void 0);
-__decorate([
-    swagger_1.ApiHideProperty(),
-    typeorm_1.Column(),
-    class_transformer_1.Exclude(),
-    __metadata("design:type", String)
-], Customer.prototype, "email", void 0);
+], Car.prototype, "nplate", void 0);
 __decorate([
     swagger_1.ApiHideProperty(),
     typeorm_1.Column(),
     __metadata("design:type", String)
-], Customer.prototype, "password", void 0);
+], Car.prototype, "vin", void 0);
 __decorate([
     swagger_1.ApiHideProperty(),
     typeorm_1.Column(),
-    __metadata("design:type", Date)
-], Customer.prototype, "created_at", void 0);
+    __metadata("design:type", String)
+], Car.prototype, "min", void 0);
 __decorate([
     swagger_1.ApiHideProperty(),
     typeorm_1.Column(),
-    __metadata("design:type", Date)
-], Customer.prototype, "updated_at", void 0);
+    __metadata("design:type", String)
+], Car.prototype, "informalnumber", void 0);
 __decorate([
     swagger_1.ApiHideProperty(),
     typeorm_1.Column(),
     __metadata("design:type", Number)
-], Customer.prototype, "role", void 0);
+], Car.prototype, "yearofmanufacture", void 0);
 __decorate([
     swagger_1.ApiHideProperty(),
     typeorm_1.Column(),
-    __metadata("design:type", Number)
-], Customer.prototype, "team", void 0);
-Customer = __decorate([
-    typeorm_1.Entity({ name: "users", schema: "vehicle" })
-], Customer);
-exports.Customer = Customer;
-//# sourceMappingURL=customer.entity.js.map
+    __metadata("design:type", Date)
+], Car.prototype, "inspectiondate", void 0);
+__decorate([
+    swagger_1.ApiHideProperty(),
+    typeorm_1.Column(),
+    __metadata("design:type", String)
+], Car.prototype, "type", void 0);
+__decorate([
+    swagger_1.ApiHideProperty(),
+    typeorm_1.Column(),
+    __metadata("design:type", String)
+], Car.prototype, "note", void 0);
+__decorate([
+    swagger_1.ApiHideProperty(),
+    typeorm_1.Column(),
+    __metadata("design:type", String)
+], Car.prototype, "isrented", void 0);
+Car = __decorate([
+    typeorm_1.Entity({ name: "cars", schema: "vehicle" })
+], Car);
+exports.Car = Car;
+//# sourceMappingURL=car.entity.js.map

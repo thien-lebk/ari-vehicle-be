@@ -1,16 +1,22 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsNotEmpty, IsString } from "class-validator";
 
+export enum UserRole {
+  MANAGER = "manager",
+  LEADER = "leader",
+  STAFF = "STAFF",
+}
+
 export class CreateUserDto {
   @ApiProperty({ type: String, description: "email" })
   // @IsString()
   // @IsNotEmpty()
-  full_name: string;
+  name: string;
 
   @ApiProperty({ type: String, description: "note" })
   // @IsString()
   // @IsNotEmpty()
-  user_name: string;
+  username: string;
 
   @ApiProperty({ type: String, description: "phone_number" })
   // @IsString()
@@ -27,4 +33,10 @@ export class CreateUserDto {
 
   @ApiProperty({ type: Date, description: "updated_at" })
   updated_at: Date = new Date(Date.now());
+
+  @ApiProperty({ type: Number, description: "role", default: 3 })
+  role: number;
+
+  @ApiProperty({ type: Number, description: "team" })
+  team: number;
 }

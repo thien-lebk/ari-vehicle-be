@@ -12,6 +12,7 @@ import { CustomerModule } from "./customer/customer.module";
 import { UserModule } from "./user/user.module";
 import { PassportModule } from "@nestjs/passport";
 import { JwtModule } from "@nestjs/jwt";
+import { CarModule } from './car/car.module';
 
 @Module({
   imports: [
@@ -46,6 +47,7 @@ import { JwtModule } from "@nestjs/jwt";
     AwsModule,
     CustomerModule,
     UserModule,
+    CarModule,
   ],
   controllers: [HealthController],
   providers: [AppGateway],

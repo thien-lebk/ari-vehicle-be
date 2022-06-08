@@ -14,7 +14,5 @@ export declare class CustomerService {
         statusCode: number;
         message: string;
     }>;
-    signIn(transactionManager: EntityManager, signInDto: signInDto): Promise<{
-        token: string;
-    }>;
+    signIn(transactionManager: EntityManager, signInDto: signInDto): Promise<{}>;
 }

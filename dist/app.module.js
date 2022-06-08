@@ -19,6 +19,7 @@ const aws_module_1 = require("./lib/aws/aws.module");
 const app_gateway_1 = require("./app.gateway");
 const customer_module_1 = require("./customer/customer.module");
 const user_module_1 = require("./user/user.module");
+const car_module_1 = require("./car/car.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -51,6 +52,7 @@ AppModule = __decorate([
             aws_module_1.AwsModule,
             customer_module_1.CustomerModule,
             user_module_1.UserModule,
+            car_module_1.CarModule,
         ],
         controllers: [health_controller_1.HealthController],
         providers: [app_gateway_1.AppGateway],

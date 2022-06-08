@@ -31,12 +31,12 @@ export class Customer extends BaseEntity {
 
   // @ApiProperty()
   @Column()
-  full_name: string;
+  name: string;
 
   @ApiHideProperty()
   @Column()
   @Exclude()
-  user_name: string;
+  username: string;
 
   @ApiHideProperty()
   @Column()
@@ -56,9 +56,10 @@ export class Customer extends BaseEntity {
   updated_at: Date;
 
   @ApiHideProperty()
-  @Column({
-    enum: UserRole,
-    default: UserRole.USER
-  })
-  role: UserRole;
+  @Column()
+  role: number;
+
+  @ApiHideProperty()
+  @Column()
+  team: number;
 }

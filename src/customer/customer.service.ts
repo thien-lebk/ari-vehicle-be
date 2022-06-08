@@ -16,12 +16,7 @@ import { JwtService } from "@nestjs/jwt";
 
 @Injectable()
 export class CustomerService {
-
-  constructor(
-    private jwtService: JwtService
-  ) {
-
-  }
+  constructor(private jwtService: JwtService) {}
 
   async getAll(transactionManager: EntityManager) {
     const users = await transactionManager.getRepository(Customer).find();
@@ -38,16 +33,27 @@ export class CustomerService {
     transactionManager: EntityManager,
     createUserDto: CreateUserDto
   ) {
-    const { full_name, user_name, email, password, created_at, updated_at } =
-      createUserDto;
+    const {
+      name,
+      username,
+      email,
+      password,
+      created_at,
+      updated_at,
+      role,
+      team,
+    } = createUserDto;
+
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = transactionManager.create(Customer, {
-      full_name,
-      user_name,
+      name,
+      username,
       email,
       password: hashedPassword,
       created_at,
       updated_at,
+      role,
+      team,
     });
 
     try {
@@ -61,15 +67,15 @@ export class CustomerService {
       throw new InternalServerErrorException("Error when create user.");
     }
 
-    return { statusCode: 201, message: "Create user successfully." };
+    return { statusCode: 200, message: "Create user successfully." };
   }
 
   async signIn(transactionManager: EntityManager, signInDto: signInDto) {
-    const { user_name, password } = signInDto;
+    const { username, password } = signInDto;
 
-    // console.log(user_name, password)
+    // console.log(username, password)
 
-    const user = await transactionManager.findOne(Customer, { user_name });
+    const user = await transactionManager.findOne(Customer, { username });
 
     if (!user) {
       throw new UnauthorizedException("Invalid Email Address");
@@ -77,14 +83,21 @@ export class CustomerService {
 
     // console.log(user.password)
 
-    const isPasswordMatched = await bcrypt.compare(password, user.password)
+    const isPasswordMatched = await bcrypt.compare(password, user.password);
 
     if (!isPasswordMatched) {
-      throw new UnauthorizedException("Invalid password")
-    } 
-    
-    const token = await ApiFeature.assignJwtToken(user.id.toString() , this.jwtService)
+      throw new UnauthorizedException("Invalid password");
+    }
 
-    return {token};
+    const token = await ApiFeature.assignJwtToken(
+      user.id.toString(),
+      this.jwtService
+    );
+    let data = {};
+    data["token"] = token;
+
+    data["user"] = user;
+
+    return data;
   }
 }

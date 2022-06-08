@@ -14,7 +14,5 @@ export declare class CustomerController {
         statusCode: number;
         message: string;
     }>;
-    signIn(signInDto: signInDto): Promise<{
-        token: string;
-    }>;
+    signIn(signInDto: signInDto): Promise<{}>;
 }
